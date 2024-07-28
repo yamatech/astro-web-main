@@ -1,0 +1,80 @@
+---
+const { title, url, description, pubDate, tags } = Astro.props;
+let { imageAlt, imageUrl } = Astro.props;
+
+// imageUrl が空の場合は透明な画像dammy_.pngを使用する
+if (!imageUrl) {
+  imageUrl = "/src/assets/dammy_.png";
+}
+---
+
+<li>
+  <div class="blog-box">
+    <div class="blog-post">
+      <p>
+        <a class="title" href={url}>{title}</a><span class="date">{pubDate}</span>
+      </p>
+      <p class="description">{description}</p>
+      <p class="tags">タグ: {tags}</p>
+    </div>
+    <div class="eye-catch">
+      <a href={url}><img src={imageUrl} alt={imageAlt} height="120" width="200" /></a>
+    </div>
+  </div>
+</li>
+
+<style>
+  /* ブログ記事一覧用スタイル */
+  li {
+    list-style: none;
+  }
+
+  p {
+    margin: 0;
+  }
+
+  .date {
+    margin-left: 1rem;
+    font-size: 0.8rem;
+    color: #666;
+  }
+
+  .title {
+    font-weight: bold;
+    font-size: 1.2rem;
+  }
+
+  .description {
+    margin: 1rem 0;
+    line-height: 1.5;
+    color: #333;
+    white-space: pre-wrap;
+  }
+
+  .blog-box {
+    display: flex;
+    margin: 2rem auto;
+    width: 90%;
+    height: 150px;
+    padding: 1rem;
+    border-left: 10px solid skyblue;
+    border-bottom: 1px dashed skyblue;
+    background-color: #eee;
+  }
+
+  .blog-post {
+    flex: 0 0 60%;
+  }
+
+  .tags {
+    font-size: 0.8rem;
+  }
+
+  .eye-catch {
+    flex: 0 0 40%;
+  }
+
+  .eye-catch img {
+    object-fit: none;
+  }
+</style>

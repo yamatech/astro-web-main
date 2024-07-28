@@ -1,0 +1,45 @@
+---
+const { currentPage, totalPages } = Astro.props;
+---
+
+<nav aria-label="Page navigation">
+  <ul>
+    {currentPage > 1 && (
+      <li>
+        <a href={`?page=${currentPage - 1}`}>prev</a>
+      </li>
+    )}
+    {Array.from({ length: totalPages }, (_, i) => i + 1).map(page => (
+      <li>
+        <a href={`?page=${page}`} class={page === currentPage ? 'active' : ''}>
+          {page}
+        </a>
+      </li>
+    ))}
+    {currentPage < totalPages && (
+      <li>
+        <a href={`?page=${currentPage + 1}`}>next</a>
+      </li>
+    )}
+  </ul>
+</nav>
+
+<style>
+  nav {
+    text-align: center;
+  }
+  nav ul {
+    list-style: none;
+    padding: 0;
+  }
+  nav ul li {
+    display: inline;
+    margin-right: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 5px;
+  }
+  nav ul li a.active {
+    font-weight: bold;
+  }
+</style>

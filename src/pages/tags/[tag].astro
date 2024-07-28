@@ -1,0 +1,58 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import BlogPosts from "../../components/BlogPosts.astro";
+import BlogNav from "../../components/BlogNav.astro";
+import Pagenation from "../../components/Pagination.astro";
+import { calculatePagination } from "../../utils/paginationSettings.js";
+
+// 静的パスを取得するための関数
+export async function getStaticPaths() {
+  const allPosts = await Astro.glob("../posts/*.md");
+  const getTags = [
+    ...new Set(allPosts.map((post) => post.frontmatter.tags).flat()),
+  ];
+
+  return getTags.map((tag) => {
+    const filterPostsByTag = allPosts.filter((post) =>
+      post.frontmatter.tags.includes(tag)
+    );
+    return {
+      params: { tag },
+      props: { posts: filterPostsByTag },
+    };
+  });
+}
+
+const { tag } = Astro.params;
+const { posts } = Astro.props;
+
+// 投稿を日付順にソートする
+const sortedPosts = posts.sort((a, b) =>
+    new Date(b.frontmatter.pubDate).getTime() - new Date(a.frontmatter.pubDate).getTime()
+);
+const postsPerPage = 5;
+const page = parseInt(Astro.params.page, 10) || 1;
+const { totalPosts, totalPages, startIndex, endIndex, postsToShow } = calculatePagination(sortedPosts, page, postsPerPage);
+---
+
+<BaseLayout pageTitle={tag}>
+  <h1>Tag: {tag}</h1>
+  <BlogNav />
+  <ul>
+    {
+      // 投稿を表示する
+      postsToShow.map((post) => (
+        <BlogPosts
+          pubDate={post.frontmatter.pubDate.slice(0, 10)}
+          url={post.url}
+          title={post.frontmatter.title}
+          description={post.frontmatter.description}
+          tags={post.frontmatter.tags.join(', ')}
+          imageUrl={post.frontmatter.image.url}
+          imageAlt={post.frontmatter.image.alt}
+        />
+      ))
+    }
+  </ul>
+  <Pagenation currentPage={page} totalPages={totalPages} />
+</BaseLayout>

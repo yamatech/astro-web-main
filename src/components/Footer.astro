@@ -1,0 +1,54 @@
+---
+const year = new Date().getFullYear();
+---
+
+<footer>
+  <div class="links">
+    <a href="https://www.github.com/" target="_blank"
+      ><img src="images/links/github-mark.png" alt="My GitHub account" /></a
+    >
+    <a href="https://twitter.com/" target="_blank"
+      ><img src="images/links/x-logo-black.png" alt="My X account" /></a
+    >
+    <a href="https://www.youtube.com/" target="_blank"
+      ><img
+        src="images/links/youtube_social_square_dark.png"
+        alt="My YouTube account"
+      /></a
+    >
+    <a href="https://www.soundcloud.com/" target="_blank"
+      ><img
+        src="images/links/sc-logo-cloud-black.png"
+        alt="My SoundCloud account"
+      /></a
+    >
+  </div>
+  <p class="copyright">
+    &copy; {year}
+    <a href="https://yamatech.github.io">yamatech.github.io</a>
+  </p>
+</footer>
+
+<style>
+  /* フッター専用スタイル */
+  footer {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    margin-top: 10rem;
+    padding: 1rem;
+    border-top: 1px dashed #999;
+  }
+
+  .links a {
+    margin: 0.5rem;
+  }
+
+  .copyright {
+    font-size: 0.9rem;
+  }
+
+  img {
+    width: 24px;
+  }
+</style>

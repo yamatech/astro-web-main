@@ -1,0 +1,27 @@
+---
+import "../styles/global.css";
+import Humberger from "./Humberger.astro";
+---
+
+<header>
+  <nav>
+    <Humberger />
+    <ul class="nav-links">
+      <li><a href="/">Home</a></li>
+      <li><a href="/about/">About</a></li>
+      <li><a href="/blog/">Blog</a></li>
+    </ul>
+  </nav>
+</header>
+
+<style>
+  /* ヘッダー専用スタイル */
+  header {
+    background-color: white;
+    border: 1.5px dashed #ccc;
+  }
+
+  ul {
+    list-style-type: none;
+  }
+</style>

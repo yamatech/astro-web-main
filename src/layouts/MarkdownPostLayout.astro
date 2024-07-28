@@ -1,0 +1,41 @@
+---
+import BaseLayout from "./BaseLayout.astro";
+import BlogNav from "../components/BlogNav.astro";
+const { frontmatter } = Astro.props;
+---
+
+<BaseLayout pageTitle={frontmatter.title}>
+  <BlogNav />
+  <div class="blog-header">
+    <h1>{frontmatter.title}</h1>
+    <p>Date: {frontmatter.pubDate.slice(0, 10)}</p>
+    <p>Author: {frontmatter.author}</p>
+    <p>
+      Tags:{frontmatter.tags.map((tag) => <a href={`/tags/${tag}`}> {tag} </a>)}
+    </p>
+  </div>
+  <article>
+    <img src={frontmatter.image.url} width="300" alt={frontmatter.image.alt} />
+    <slot />
+  </article>
+</BaseLayout>
+
+<style>
+  .blog-header {
+    background-color: #999;
+    margin-top: 1rem;
+    padding: 1rem;
+    border-radius: 10px;
+    color: white;
+  }
+
+  .blog-header p {
+    font-size: 0.8rem;
+  }
+
+  article {
+    margin: 5% 10%;
+    line-height: 1.5;
+    color: #333;
+  }
+</style>

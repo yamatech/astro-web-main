@@ -1,0 +1,139 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+const pageTitle = "This is the home page";
+---
+
+<BaseLayout>
+  <div class="top-content">
+    <img
+      src="images/icon_logo.png"
+      class="icon-logo"
+      width="90"
+      alt="Character images"
+    />
+    <div>
+      <h1>{pageTitle}</h1>
+      <p>Experimental personal website</p>
+    </div>
+  </div>
+  <!-- Introducing My Apps -->
+  <div class="content">
+    <h2>Apps</h2>
+    <div class="card">
+      <img
+        src="images/clock_icon.png"
+        class="image-container"
+        alt="Clock Icon"
+        width="100"
+        height="100"
+      />
+      <h3>Clock app</h3>
+      <a href="/apps/js_clock/index.html" target="_blank">Sample</a> |
+      <a href="https://github.com/yamatech/js_clock" target="_blank"
+        >Repository</a
+      >
+    </div>
+    <div class="card">
+      <img
+        src="images/note_icon.png"
+        class="image-container"
+        alt="Note Icon"
+        width="100"
+        height="100"
+      />
+      <h3>Note app</h3>
+      <a href="/apps/note_app/index.html" target="_blank">Sample</a> |
+      <a href="https://github.com/yamatech/note-vue" target="_blank"
+        >Repository</a
+      >
+    </div>
+  </div>
+
+  <!-- 初期化時には以下のように記述する
+<BaseLayout>
+  <h2>{pageTitle}</h2>
+  <p>Welcome to my Astro site.</p>
+</BaseLayout>
+-->
+</BaseLayout>
+
+<style>
+  /* Index-only styles */
+  h1 {
+    font-size: 1.5rem;
+    margin: 0.5rem 0;
+  }
+
+  h2 {
+    font-size: 1.2rem;
+    margin: 0.5rem 0;
+  }
+
+  h3 {
+    font-size: 1rem;
+    margin: 0.5rem 0;
+  }
+
+  .top-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin: 1rem auto;
+    padding: 1rem 0;
+    border-radius: 10px;
+    background-color: #808080;
+    color: #fff;
+  }
+
+  .icon-logo {
+    border: 1px solid #808080;
+    border-radius: 50%;
+    margin: 0 5px;
+  }
+
+  .content {
+    display: block;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin: 10% auto;
+  }
+
+  .card {
+    display: inline-block;
+    background-color: white;
+    width: 200px;
+    height: 200px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 10px;
+  }
+
+  .image-container {
+    width: 100px;
+    height: 100px;
+    background-color: #808080;
+    border: 1px solid gray;
+    border-radius: 20%;
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.5);
+    margin: 5px;
+  }
+
+  @media (max-width: 768px) {
+    .content {
+      flex-direction: column;
+    }
+
+    h1 {
+      font-size: 1.2rem;
+    }
+
+    h2 {
+      font-size: 1rem;
+    }
+  }
+</style>

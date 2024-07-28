@@ -1,0 +1,42 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import BlogPosts from "../components/BlogPosts.astro";
+import BlogNav from "../components/BlogNav.astro";
+import Pagination from "../components/Pagination.astro";
+import { calculatePagination } from "../utils/paginationSettings.js";
+
+// すべての投稿を取得し、公開日でソートする
+const allPosts = await Astro.glob("../pages/posts/*.md");
+const sortedPosts = allPosts.sort(
+  (a, b) =>
+    new Date(b.frontmatter.pubDate).getTime() -
+    new Date(a.frontmatter.pubDate).getTime()
+);
+const postsPerPage = 5;
+const page = parseInt(Astro.params.page, 10) || 1; // ページ番号を取得（デフォルトは1）
+const { totalPosts, totalPages, startIndex, endIndex, postsToShow } =
+  calculatePagination(sortedPosts, page, postsPerPage); // ページネーションの計算
+
+const pageTitle = "Blog";
+---
+
+<BaseLayout pageTitle={pageTitle}>
+  <h1>{pageTitle}</h1>
+  <BlogNav />
+  <ul>
+    {
+      postsToShow.map((post) => (
+        <BlogPosts
+          pubDate={post.frontmatter.pubDate.slice(0, 10)}
+          url={post.url}
+          title={post.frontmatter.title}
+          description={post.frontmatter.description}
+          tags={post.frontmatter.tags.join(', ')}
+          imageUrl={post.frontmatter.image.url}
+          imageAlt={post.frontmatter.image.alt}
+        />
+      ))
+    }
+  </ul>
+  <Pagination currentPage={page} totalPages={totalPages} />
+</BaseLayout>
