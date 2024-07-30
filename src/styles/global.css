@@ -37,13 +37,13 @@ h3 {
 }
 
 a {
-  color: #00539f;
+  color: slategray;
   text-decoration: none;
 }
 
 a:hover,
 a:focus {
-  color: #1aa3ff;
+  color: lightsteelblue;
 }
 
 /* ナビゲーションのスタイル（初期設定はスマホを基準） */

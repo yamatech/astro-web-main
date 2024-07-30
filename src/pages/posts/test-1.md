@@ -5,7 +5,7 @@ pubDate: 2024-06-16
 description: 'これは最初のテスト投稿です。'
 author: 'No Name'
 image:
-    url: '/src/assets/img1.jpg'
+    url: '/images/assets/img1.jpg'
     alt: 'サンプル画像'
 tags: ["astro", "ブログ"]
 ---
