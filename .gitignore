@@ -26,8 +26,6 @@ pnpm-debug.log*
 # vscode setting folder
 .vscode/
 
-.github/
-
 test/
 
 public/apps/*
